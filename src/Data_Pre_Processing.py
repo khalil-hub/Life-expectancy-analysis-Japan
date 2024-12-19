@@ -1,10 +1,13 @@
 import pandas as pd
+# Understanding, cleaning and preprocessing the Data (Check Data_Pre_Processing.py file)
 
 #Step1: Load the data
 #Load the Raw excel file using the directory of the file and read the file using pandas library excel reading function
 raw_data_path='/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/raw/Japan_Life_Expectancy.xlsx'
 data=pd.read_excel(raw_data_path)
 
+#Display the columns
+print(data.columns)
 #Display the first n rows 
 print(data.head(10))
 
@@ -59,22 +62,35 @@ print(data.head())
 from sklearn.preprocessing import StandardScaler
 scaler =StandardScaler()
 #lets apply standardization to 'Life_expectancy' column
-data[['Life_expectancy']]=scaler.fit_transform(data[['Life_expectancy']])
+#data[['Life_expectancy']]=scaler.fit_transform(data[['Life_expectancy']])
 print(data.head(20))
 print(data.describe())
 #Normalization
 from sklearn.preprocessing import MinMaxScaler
 scaler=MinMaxScaler()
 #Lets apply normalization on 'Physician_100kP' column
-data[['Physician_100kP']]=scaler.fit_transform(data[['Physician_100kP']])
+#data[['Physician_100kP']]=scaler.fit_transform(data[['Physician_100kP']])
 print(data.head(20))
 print(data.describe())
 
-#step8: split data into features and target 
-X=data['Income_Person']
-Y=data['Life_expectancy']
-plt.plot(X, Y)
-plt.show()
-
 #step9: save the cleaned dataset
 data.to_excel('/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/Cleaned_Japan_Life_Expectancy.xlsx', index=False)
+
+#Feature engineering 
+import seaborn as sns 
+#select the key features and target
+key_features_Strong= ['Life_expectancy', 'Junior_col_%', 'University_%', 'Salary']
+key_features_Weak=['Life_expectancy', 'Physician_100kP', 'Park_Land_%']
+#Pair plot
+sns.pairplot(data[key_features_Strong], diag_kind="kde", kind="scatter")
+plt.title("Pair plot of strong key features and target")
+plt.show()
+sns.pairplot(data[key_features_Weak], diag_kind="kde", kind="scatter")
+plt.title("Pair plot of weak key features and target")
+plt.show()
+
+#Data splitting
+from sklearn.model_selection import train_test_split
+#split into train and test sets 
+X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2, random_state=42)
+print(X_train.shape, X_test.shape)

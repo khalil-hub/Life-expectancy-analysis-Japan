@@ -3,8 +3,9 @@ import pandas as pd
 
 #Step1: Load the data
 #Load the Raw excel file using the directory of the file and read the file using pandas library excel reading function
-raw_data_path='~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/raw/Japan_Life_Expectancy.xlsx'
+raw_data_path='/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/raw/Japan_Life_Expectancy.xlsx'
 data=pd.read_excel(raw_data_path)
+
 #Display the columns
 print(data.columns)
 #Display the first n rows 
@@ -73,7 +74,7 @@ print(data.head(20))
 print(data.describe())
 
 #step9: save the cleaned dataset
-data.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/Cleaned_Japan_Life_Expectancy.xlsx', index=False)
+data.to_excel('/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/Cleaned_Japan_Life_Expectancy.xlsx', index=False)
 
 #Feature engineering 
 import seaborn as sns 
@@ -91,5 +92,8 @@ plt.show()
 #Data splitting
 from sklearn.model_selection import train_test_split
 #split into train and test sets 
-X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2, random_state=42)
-print(X_train.shape, X_test.shape)
+#X_train, X_test, y_train, y_test=train_test_split(X_test, y, test_size=0.2, random_state=42)
+#print(X_train.shape, X_test.shape)
+#X_train.to_excel('/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_trainy.xlsx', index=False)
+#y_train.to_excel('/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_trainy.xlsx', index=False)
+

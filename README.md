@@ -49,7 +49,7 @@ Transform the data to improve model performance by:
 - Creating derived features if necessary
 
 # Data splitting (Check Data_Pre_Processing.py file)
-split the data into training data and test data to ensure that once the model is ready it can be evaluated on unseen data(test data)
+split the data into training data and test data to ensure that once the model is ready it can be evaluated on unseen data(test data) and save the csv file in processed data folder
 - Training set = 80% of the data
 - Testing set = 20% of the data 
 

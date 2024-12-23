@@ -53,4 +53,8 @@ split the data into training data and test data to ensure that once the model is
 - Training set = 80% of the data
 - Testing set = 20% of the data 
 
+# Model Selection and training
+To predict the Target based on the relevant features we need to choose a suitable algorithm and train the model based on the data type:
+- **Regression**: Continuous Target (eg, life expectancy); for small datasets and linear relationships use *Linear regression*, for Large Datasets and non linear relationships use more complex models like *Decision Trees*, *Random Forest* or *Gradient Boosting*
+- **Classification**: Discrete labels (eg, Predict whether a customer buys a product or not); if relationship is linear *Logistic Regression*, low dimensional feature space then *K-Nearest-Neighbor*, Non linear relationship then *Decision Tree* or *Random Forest*, High dimensional feature space *Support Vector Machines*
 

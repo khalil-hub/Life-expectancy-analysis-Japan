@@ -3,7 +3,7 @@ import pandas as pd
 
 #Step1: Load the data
 #Load the Raw excel file using the directory of the file and read the file using pandas library excel reading function
-raw_data_path='/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/raw/Japan_Life_Expectancy.xlsx'
+raw_data_path='~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/raw/Japan_Life_Expectancy.xlsx'
 data=pd.read_excel(raw_data_path)
 
 #Display the columns
@@ -78,7 +78,7 @@ data.to_excel('/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法
 
 #Feature engineering 
 import seaborn as sns 
-#select the key features and target
+#Select the key features and target
 key_features_Strong= ['Life_expectancy', 'Junior_col_%', 'University_%', 'Salary']
 key_features_Weak=['Life_expectancy', 'Physician_100kP', 'Park_Land_%']
 #Pair plot
@@ -89,11 +89,16 @@ sns.pairplot(data[key_features_Weak], diag_kind="kde", kind="scatter")
 plt.title("Pair plot of weak key features and target")
 plt.show()
 
-#Data splitting
+#Data Splitting
 from sklearn.model_selection import train_test_split
-#split into train and test sets 
-#X_train, X_test, y_train, y_test=train_test_split(X_test, y, test_size=0.2, random_state=42)
-#print(X_train.shape, X_test.shape)
-#X_train.to_excel('/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_trainy.xlsx', index=False)
-#y_train.to_excel('/Users/khalilmosbah/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_trainy.xlsx', index=False)
+#Split into training and testing sets with X being 2D and y being 1D
+X=data[['Junior_col_%', 'University_%', 'Salary', 'Physician_100kP', 'Park_Land_%']]
+y=data['Life_expectancy']
+X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2, random_state=42)
+print(X_train.shape, X_test.shape)
+#save the training sets to excel
+X_train.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_trainy.xlsx', index=False)
+y_train.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/y_trainy.xlsx', index=False)
+X_test.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_test.xlsx', index=False)
+y_test.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/y_test.xlsx', index=False)
 

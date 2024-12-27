@@ -29,23 +29,24 @@ For this doing 2 Techniques are available:
 - One-Hot Encoding: Converts each unique category into a new binary column using **pd.get_dummies** and is best used for categories with no inherent order (Country, color)
 - Label encoding: Assigns a unique integer to each category using **fit_transform** and is best used for categories that have order or ranking (High school, college..)
 7. *Normalize or standardize Numeric Data*
-Scaling ensures that all numerical features contribute equally to the model therefore making sure that different features (eg. life expectancy in years and salaries in millions) have the same range will ensure consistency with machine learning models that are sensitive to the scale of numerical values (eg. linear regression, NN, clustering). This would involve either Standardization or Normalization
+Scaling ensures that all numerical features contribute equally to the model therefore making sure that different features (eg. life expectancy in years and salaries in millions) have the same range will ensure consistency with machine learning models that are sensitive to the scale of numerical values (eg. linear regression, NN, clustering). This would involve either Standardization or Normalization or applying a log transformtaion
 - Standardization: scale the data to have a mean of 0 and a standard deviation of 1 and is very useful for algorithms that assume normally distributed data like SVM, PCA using **SrandardScaler()**
 - Normalization: scale the data to fit within a specific range such as [0, 1] and is very Useful for when absolute values matter eg. distance based algorithm like KNN using **MinMaxScaler()**
 8. *Save the cleaned data* 
 Store the cleaned and processed dataset for future use (Check Cleaned_Japan_Life_Expectancy.xlsx file)
 
-# EDA (Exploratory Data Analysis) using JupyterNotebook
+# EDA (Exploratory Data Analysis) using JupyterNotebook (check exploratory_analysis.ipynb file)
 - Generate summary statistics like mean, min, max and standard deviation
 - Plot distributions of features using Histograms to identify skewness and patterns
 - Visualize correlations between features (x) and targets (y) using a heatmap (~+1 Strong, ~-1 Neg_strong, 0 No_correlation)
 - Pair plots for key features to visualize the relationship between multiple key features simultaneously
 - Identify erros, outliers and anolmalies using Boxplots
 - Identify strong and weak correlations between features and targets using heat map and plot pairing
+- Use variance Inflation Factor (VIF) test to ensure no severe multicolinearity exists(~1 good, >10 High)
 
 # Feature engineering (Check Data_Pre_Processing.py file)
 Transform the data to improve model performance by:
-- Selecting the relevant features based on correlation analysis and the target 
+- Selecting the relevant features (Independant Variable) based on correlation analysis(Correlation Heatmap) and the target (Dependant Variable) while avoiding multicollinearity (features that are highly correlated may impact the model negatively)
 - Creating derived features if necessary
 
 # Data splitting (Check Data_Pre_Processing.py file)
@@ -53,8 +54,20 @@ split the data into training data and test data to ensure that once the model is
 - Training set = 80% of the data
 - Testing set = 20% of the data 
 
-# Model Selection and training
+# Model Selection and training Function (Check Model.py file)
 To predict the Target based on the relevant features we need to choose a suitable algorithm and train the model based on the data type:
 - **Regression**: Continuous Target (eg, life expectancy); for small datasets and linear relationships use *Linear regression*, for Large Datasets and non linear relationships use more complex models like *Decision Trees*, *Random Forest* or *Gradient Boosting*
 - **Classification**: Discrete labels (eg, Predict whether a customer buys a product or not); if relationship is linear *Logistic Regression*, low dimensional feature space then *K-Nearest-Neighbor*, Non linear relationship then *Decision Tree* or *Random Forest*, High dimensional feature space *Support Vector Machines*
 
+# Model Evaluation (Check Evaluation.py file)
+Using the testing data we will evaluate how well the model prdicts the target value.
+- Plot the predicted target points vs the actual target points for the testing data set and check how accurate the trained model was at predicting the target value. (Points should be as close as possible to the diagonal line)
+- For regression Models: 
+  * R^2 (R squared): *Coefficient of determination* indicates how well the key features chosen (independant variables) were able to predict the target. (r2=1: perfect fit, r2=0: Model performs very poorly)
+  * RMSE (Root Mean Squared Error): Average error between predicted values and actual values. (The lower the better) 
+
+# Feature importance and Visualization (Check feature_importance.ipynb file)
+Use the trained model to quantify which features had the most influence on its predictions. We will rank features by importance to provide further insight. If needed further opeartions should be perfomed in Data_pre_processing.py
+- Access coefficent as feature importance for Linear Regression: retrieve cofficient for each feature and rank them by order of magnitude to discover feature importance (+Coef increase target value, -Coef decrease target value, Mangitude indicates importance). Limitations: non scaled features may be misleading, overlapping features
+- SHAP: works for any machine learning model and calculates how much each feature contributes to the prediction by comparing the model's output with and without the feature (+SHAP increase prediction, -SHAP decrease prediction and the vertical axis lists the features in order of importance while on the Horizontal axis the further from 0 the stronger the impact)
+- Interpretation: use visualizations (dependance plot, scatterplot, heatmap..) and aggregate the data into bins to dive deeper and to understand and validate feature interactions

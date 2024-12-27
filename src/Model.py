@@ -1,4 +1,5 @@
 import joblib
+from sklearn.feature_selection import RFE
 #Model Selection Training
 #Linear Regression(Linear Relationship between Features and Target)
 from sklearn.linear_model import LinearRegression
@@ -9,7 +10,13 @@ def train_model_Linear_Regression(X_train, y_train, model_path):
       """
     #Model Training: Linear Regression
     model=LinearRegression()
-    model.fit(X_train, y_train)
+    #Perform RFE (Recursive Feature Elimination) to select top 2 features
+    rfe=RFE(estimator=model, n_features_to_select=2)
+    rfe.fit(X_train, y_train)
+    #print selected features
+    selected_features=X_train.columns[rfe.support_]
+    print(f"Selected features: {selected_features}")
     #Save the trained model
-    joblib.dump(model, model_path)
+    joblib.dump(rfe, model_path)
     print(f"Model saved to {model_path}")
+    

@@ -99,24 +99,32 @@ plt.title("Pair plot of reverse key feature and target")
 plt.show()
 #Data Splitting
 from sklearn.model_selection import train_test_split
+"""
 #Split into training and testing sets with X being 2D and y being 1D
-X=data[['Junior_col_%', 'University_%', 'Salary_Log', 'Physician_100kP', 'Park_Land_%_Log', 'Elementary_school']]
-y=data['Life_expectancy']
+X=data[['Junior_col_%', 'University_%', 'Salary_Log', 'Physician_100kP', 'Park_Land_%_Log']]
 X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2, random_state=42)
 print(X_train.shape, X_test.shape)
-#save the training sets to excel
-X_train.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_trainy_log.xlsx', index=False)
-y_train.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/y_trainy.xlsx', index=False)
-X_test.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_test_log.xlsx', index=False)
-y_test.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/y_test.xlsx', index=False)
-#save training datasets post VIF
+"""
+#Select key features and target based on performance assessment
 X=data[['University_%', 'Junior_col_%']]
+y=data['Life_expectancy']
+#Split into training and testing sets with X being 2D and y being 1D
 X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2, random_state=42)
-X_train.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_trainy_v2.xlsx', index=False)
-X_test.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_test_v2.xlsx', index=False)
+#save the training sets to excel
+X_train.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_train_best.xlsx', index=False)
+X_test.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_test_best.xlsx', index=False)
+y_train.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/y_train.xlsx', index=False)
+y_test.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/y_test.xlsx', index=False)
+"""
 #RFE Data
 X=data.drop(['Life_expectancy','Prefecture'], axis=1)
 X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2, random_state=42)
-X_train.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_trainy_RFE.xlsx', index=False)
-X_test.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_test_RFE.xlsx', index=False)
+"""
+#filtering key features
+X=data[['University_%', 'Junior_col_%','Salary_Log','Park_Land_%_Log', 'Physician_100kP']]
 
+#Split into training and testing sets with X being 2D and y being 1D
+X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2, random_state=42)
+#save the training sets to excel
+X_train.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_train.xlsx', index=False)
+X_test.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/X_test.xlsx', index=False)

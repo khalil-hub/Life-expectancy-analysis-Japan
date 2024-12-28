@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from sklearn.metrics import root_mean_squared_error, r2_score
+import pandas as pd
 import os
 def evaluate_model(model, X_test, y_test, log_path):
 #Model Evaluation
@@ -40,4 +41,23 @@ def evaluate_model(model, X_test, y_test, log_path):
     
     print("Evaluation metrics logged to {log_path}")
 
-    return rmse, r2
+    return rmse, r2, y_pred
+
+def save_predictions(y_test, y_pred, Output_path):
+    #save predicted and actual values y_pred, y_test to excel and a scatter plot
+    y_test=y_test.squeeze()
+    y_pred=y_pred.squeeze()
+    predictions=pd.DataFrame({"Actual":y_test, "Predicted":y_pred})
+    predictions.to_excel(Output_path, index=False)
+    print(f"Prediction values saved to {Output_path}")
+    plt.figure(figsize=(8,6))
+    plt.scatter(y_test, y_pred, color='b', label='Actual vs Predicted life expectancy', alpha=0.7)
+    plt.xlabel("Actual life expectancy")
+    plt.ylabel("Predicted life expectancy")
+    plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], label='Ideal fit')
+    plt.legend()
+    plt.title("Actual vs Predicted life expectancy")
+    scatter_plot_path=Output_path.replace(".xlsx", ".png")
+    plt.savefig(scatter_plot_path)
+    plt.close()
+    print(f"scatter plot saved to {scatter_plot_path}")

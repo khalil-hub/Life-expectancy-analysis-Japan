@@ -19,6 +19,7 @@
 - Higher education consistently improves life expectancy while salary has a mixed effect.
 
 ## Recommendations
-- Linear regression Model trained on `University_%`, `Junior_col_%` provides the most accurate prediction therefore  Increasing access to higher education is linked to improving life expectancy (Correlation not causation)
-- Investigate urbanization factors that may negatively impact life expectancy perhaps due to(Stress, poor diet, lack of activity).
+- Linear regression Model trained on `University_%`, `Junior_col_%` provides the most accurate `Life_expectancy`prediction therefore  Increasing access to higher education is linked to improving life expectancy (Correlation not causation)
+- Data reveals that a higher education consistently improves life expectancy while lower education has a negative impact on life expectancy. 
+- Investigate urbanization factors that may negatively impact life expectancy perhaps due to(Stress, poor diet, lack of activity)
   

@@ -21,7 +21,7 @@ def evaluate_model(model, X_test, y_test, log_path):
     #scatter plot of actual vs predicted 
     plt.scatter(y_test, y_pred, color='b', label='Actual vs Predicted')
     #add title and labels
-    plt.title('Linear Regression: Actual vs Predicted Life Expectancy')
+    plt.title(f"Actual vs Predicted Life Expectancy for {log_path.replace('results/logs/','')}")
     plt.xlabel('Actual Life Expectancy')
     plt.ylabel('Predicted Life Expectancy')
     #plot the diagonal line(perfect prediction line)
@@ -56,7 +56,7 @@ def save_predictions(y_test, y_pred, Output_path):
     plt.ylabel("Predicted life expectancy")
     plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], label='Ideal fit')
     plt.legend()
-    plt.title("Actual vs Predicted life expectancy")
+    plt.title(f"{Output_path.replace('results/predictions/','')}")
     scatter_plot_path=Output_path.replace(".xlsx", ".png")
     plt.savefig(scatter_plot_path)
     plt.close()

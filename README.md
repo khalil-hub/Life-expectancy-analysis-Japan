@@ -32,6 +32,8 @@ For this doing 2 Techniques are available:
 Scaling ensures that all numerical features contribute equally to the model therefore making sure that different features (eg. life expectancy in years and salaries in millions) have the same range will ensure consistency with machine learning models that are sensitive to the scale of numerical values (eg. linear regression, NN, clustering). This would involve either Standardization or Normalization or applying a log transformtaion
 - Standardization: scale the data to have a mean of 0 and a standard deviation of 1 and is very useful for algorithms that assume normally distributed data like SVM, PCA using **SrandardScaler()**
 - Normalization: scale the data to fit within a specific range such as [0, 1] and is very Useful for when absolute values matter eg. distance based algorithm like KNN using **MinMaxScaler()**
+-Log transform: apply logarithmic function to the data to handle skewness, and compress large ranges.
+**log()**
 8. *Save the cleaned data* 
 Store the cleaned and processed dataset for future use (Check Cleaned_Japan_Life_Expectancy.xlsx file)
 
@@ -65,6 +67,9 @@ Using the testing data we will evaluate how well the model prdicts the target va
 - For regression Models: 
   * R^2 (R squared): *Coefficient of determination* indicates how well the key features chosen (independant variables) were able to predict the target. (r2=1: perfect fit, r2=0: Model performs very poorly)
   * RMSE (Root Mean Squared Error): Average error between predicted values and actual values. (The lower the better) 
+-For Classification Models:
+  *Accuracy Score: Measures the proportion of correct predictions
+
 
 # 8- Feature importance and Visualization (Check feature_importance.ipynb file)
 Use the trained model to quantify which features had the most influence on its predictions. We will rank features by importance to provide further insight. If needed further opeartions should be perfomed in Data_pre_processing.py
@@ -72,8 +77,9 @@ Use the trained model to quantify which features had the most influence on its p
 - SHAP: works for any machine learning model and calculates how much each feature contributes to the prediction by comparing the model's output with and without the feature (+SHAP increase prediction, -SHAP decrease prediction and the vertical axis lists the features in order of importance while on the Horizontal axis the further from 0 the stronger the impact)
 - Interpretation: use visualizations (dependance plot, scatterplot, heatmap..) and aggregate the data into bins to dive deeper and to understand and validate feature interactions
 
-# 9- Model Optimization (Check model_experiments.ipynb file)
+# 9- Model Optimization and evaluation (Check model_experiments.ipynb file)
 To improve the performance and accuracy of the model by *fine-tuning* its hyperparameters (Hyperparameters are the settings of a model that are not learned during training but need to be set before the learning process begins) and reduce overfitting or underfitting (too many or too few features) using *manual search, grid search, random search*..
+Evaluate the tuned model on test data and compare performance with baseline model
 
 # 10- Deployment and Reporting (Check observations.md)
 - Summarize results, findings, Insights and data driven recommendations for stakeholders (results/observations/) and save *prediction model*(models/prediction_model.pkl) and *prediction values* to excel file (results/predictions/predicted_values.excel) and *scatter plot of actual vs predicted model values*(results/predictions/scatter_plot_actual_vs_predicted_values.png)

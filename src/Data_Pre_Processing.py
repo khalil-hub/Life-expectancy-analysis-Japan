@@ -30,18 +30,23 @@ scaler=MinMaxScaler()
 numerical_features=data.select_dtypes(include=['float64', 'int64']).columns #include only numerical values
 numerical_features=numerical_features.drop(['Prefecture_encoded', 'Life_expectancy'])
 data[numerical_features]=scaler.fit_transform(data[numerical_features])
+#Salary and university are highly colinear features
+#use PCA (principal component analysis) to combine both features
+from sklearn.decomposition import PCA
+pca=PCA(n_components=1)
+data['Socioeconomic_index']=pca.fit_transform(data[['Salary', 'University_%']])
 #save the cleaned dataset
 data.to_excel('~/Library/CloudStorage/OneDrive-国立大学法人東海国立大学機構/Weekly_challenges/Data science and Analytics/Japan_Life_Expectency/data/processed/Cleaned_Japan_Life_Expectancy.xlsx', index=False)
 
 #Feature engineering 
 import seaborn as sns 
 #Select the key features and target
-key_features=['Life_expectancy', 'Physician_100kP','Junior_col_%', 'University_%', 'Salary','Elementary_school', 'Park_Land_%', 'Ambulances_100kP']
+key_features=['Life_expectancy', 'Physician_100kP','Junior_col_%', 'University_%', 'Salary','Elementary_school', 'Park_Land_%', 'Ambulances_100kP', 'Socioeconomic_index']
 #Data Splitting
 from sklearn.model_selection import train_test_split
 
 #Split into training and testing sets with X being 2D and y being 1D
-X=data[['Physician_100kP','Junior_col_%', 'University_%', 'Salary','Elementary_school', 'Park_Land_%', 'Ambulances_100kP']]
+X=data[['Physician_100kP','Junior_col_%', 'University_%', 'Salary', 'Elementary_school', 'Park_Land_%', 'Ambulances_100kP', 'Socioeconomic_index']]
 y=data['Life_expectancy']
 X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2, random_state=42)
 print(X_train.shape, X_test.shape)

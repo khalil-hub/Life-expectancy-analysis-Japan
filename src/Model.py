@@ -10,14 +10,14 @@ from sklearn.svm import SVR
 def train_model(X_train, y_train, model_name, model_path):
   """ X_train: Feature matrix for training (2D array-like).
   - y_train: Target values for training (1D array-like).
-  - model_path: Path where the trained model will be saved                      
+  - model_path: Path where the trained model will be saved
   """
   #Models to be used
   #Lasso regression to perform feature selection (small alpha behaves like LR)
   #Random forest Regressor, XGBoost, Support vector regression to capture non linear relationships
   
   models={
-    "Linear Regression": LinearRegression(),
+    "linear_regression_PCA": LinearRegression(),
     "Lasso Regression": Lasso(alpha=0.1, random_state=42),
     "Random Forest Regressor": RandomForestRegressor(n_estimators=100, random_state=42),
     "XGBoost": XGBRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42),

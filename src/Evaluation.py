@@ -13,12 +13,12 @@ def evaluate_model(model, X_test, y_test, log_path):
     
     Returns:
     - rmse: Root Mean Squared Error of the model on the test data.
-    - r2: R² score of the model on the test data. 
+    - r2: R² score of the model on the test data.
     """
     #Make prediction using the test data
     y_pred=model.predict(X_test)
     plt.figure(figsize=(8,6))
-    #scatter plot of actual vs predicted 
+    #scatter plot of actual vs predicted
     plt.scatter(y_test, y_pred, color='b', label='Actual vs Predicted')
     #add title and labels
     plt.title(f"Actual vs Predicted Life Expectancy for {log_path.replace('results/logs/','')}")

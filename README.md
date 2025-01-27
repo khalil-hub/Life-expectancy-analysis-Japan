@@ -49,7 +49,7 @@ Store the cleaned and processed dataset for future use (Check Cleaned_Japan_Life
 # 4- Feature engineering (Check Data_Pre_Processing.py file)
 Transform the data to improve model performance by:
 - Selecting the relevant features (Independant Variable) based on correlation analysis(Correlation Heatmap) and the target (Dependant Variable) while avoiding multicollinearity (features that are highly correlated may impact the model negatively)
-- Creating derived features if necessary
+- Creating derived features if necessary like PCA (principal component analysis) to combine features
 
 # 5- Data splitting (Check Data_Pre_Processing.py file)
 split the data into training data and test data to ensure that once the model is ready it can be evaluated on unseen data(test data) and save the csv file in processed data folder

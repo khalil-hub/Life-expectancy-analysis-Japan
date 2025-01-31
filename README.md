@@ -78,8 +78,9 @@ Use the trained model to quantify which features had the most influence on its p
 - Interpretation: use visualizations (dependance plot, scatterplot, heatmap..) and aggregate the data into bins to dive deeper and to understand and validate feature interactions
 
 # 9- Model Optimization and evaluation (Check model_experiments.ipynb file)
-To improve the performance and accuracy of the model by *fine-tuning* its hyperparameters (Hyperparameters are the settings of a model that are not learned during training but need to be set before the learning process begins) and reduce overfitting or underfitting (too many or too few features) using *manual search, grid search, random search*..
+-To improve the performance and accuracy of the model by *fine-tuning* its hyperparameters (Hyperparameters are the settings of a model that are not learned during training but need to be set before the learning process begins) and reduce overfitting or underfitting (too many or too few features) using *manual search, grid search, random search*..
 Evaluate the tuned model on test data and compare performance with baseline model
+-In the case of linear regression use OLS(Ordinary Least Squares) regression that describes the relationship between the dependent variable and the independent variables
 
 # 10- Deployment and Reporting (Check observations.md)
 - Summarize results, findings, Insights and data driven recommendations for stakeholders (results/observations/) and save *prediction model*(models/prediction_model.pkl) and *prediction values* to excel file (results/predictions/predicted_values.excel) and *scatter plot of actual vs predicted model values*(results/predictions/scatter_plot_actual_vs_predicted_values.png)
